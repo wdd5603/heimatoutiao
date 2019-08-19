@@ -4,7 +4,7 @@
         <div>
             <img src="../../assets/images/logo_index.png" alt="">
         </div>
-				<el-form ref="login-form" :rules="rules" :model="ruleForm">
+				<el-form ref="loginForm" :rules="rules" :model="ruleForm">
 					<el-form-item label="手机号码" label-width="80px" prop="phoneNumber">
     				<el-input placeholder="请输入手机号" v-model="ruleForm.phoneNumber"></el-input>
   				</el-form-item>
@@ -13,7 +13,7 @@
 						 <el-button style="float:right">发送验证码</el-button>
   				</el-form-item>
 					<el-form-item prop="checked">
-						<el-checkbox v-model="ruleForm.checked">请仔细阅读</el-checkbox>
+						<el-checkbox v-model="ruleForm.checked">我已阅读并同意用户协议和隐私条款</el-checkbox>
 					</el-form-item>
 					<el-form-item>
 					<el-button @click="toSubmit" type="primary" style="width:100%">提交</el-button>
@@ -26,6 +26,11 @@
 <script>
 export default {
   data () {
+    let check = function (rule, value, callback) {
+      if (!value) {
+        return callback(new Error('请仔细阅读'))
+      }
+    }
     return {
       ruleForm: {
         phoneNumber: '',
@@ -36,13 +41,29 @@ export default {
         phoneNumber: [
           { required: true, message: '不可为空', trigger: 'blur' },
           { pattern: /^1[3456789]\d{9}$/, message: '请输入正确的格式', trigger: 'blur' }
+        ],
+        code: [
+          { required: true, message: '不可为空', trigger: 'blur' },
+          { pattern: /^\d{6}$/, message: '请输入6位数验证码', trigger: 'blur' }
+        ],
+        checked: [
+          { validator: check }
+
         ]
+
       }
     }
   },
   methods: {
     toSubmit () {
-
+      this.$refs.loginForm.validate((valid) => {
+        if (valid) {
+          alert('登录成功')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
@@ -65,7 +86,6 @@ export default {
             width: 200px;
 						margin-bottom: 20px;
         }
-
     }
 }
 </style>
