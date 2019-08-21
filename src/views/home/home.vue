@@ -5,21 +5,20 @@
       <aside-view></aside-view>
     </el-aside>
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <header-view></header-view>
+      </el-header>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-import aside from './aside'
+
 export default {
-  components: {
-    'aside-view': aside
-  }
+
 }
 </script>
 
 <style lang='less'>
-
 </style>
