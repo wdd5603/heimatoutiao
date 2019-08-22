@@ -8,16 +8,15 @@
       <el-header>
         <header-view></header-view>
       </el-header>
-      <el-main>Main</el-main>
+      <el-main style="padding:0">
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-
-export default {
-
-}
+export default {}
 </script>
 
 <style lang='less'>

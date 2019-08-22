@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/login'
 import Home from './views/home/home'
+import Main from './components/home/main'
+import Comment from './views/comment/comment'
 
 Vue.use(Router)
 
@@ -12,8 +14,16 @@ export default new Router({
       component: Login
     },
     {
+      path: '/',
+      redirect: '/home'
+    },
+    {
       path: '/home',
-      component: Home
+      component: Home,
+      children: [
+        { path: '', component: Main },
+        { path: 'commentlist', component: Comment }
+      ]
     }
     // {
     //   path: '/about',

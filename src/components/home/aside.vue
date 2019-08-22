@@ -9,8 +9,9 @@
       background-color="#353b4e"
       text-color="#adafb5"
       active-text-color="#ffd04b"
+      router
     >
-      <el-menu-item index="1">
+      <el-menu-item index="/">
         <i class="el-icon-house"></i>
         <span slot="title">首页</span>
       </el-menu-item>
@@ -19,10 +20,10 @@
           <i class="el-icon-document-copy"></i>
           <span>内容管理</span>
         </template>
-        <el-menu-item>发布文章</el-menu-item>
-        <el-menu-item>内容列表</el-menu-item>
-        <el-menu-item>评论列表</el-menu-item>
-        <el-menu-item>素材管理</el-menu-item>
+        <el-menu-item index="/home/publish">发布文章</el-menu-item>
+        <el-menu-item index="/home/contentlist">内容列表</el-menu-item>
+        <el-menu-item index="/home/commentlist">评论列表</el-menu-item>
+        <el-menu-item index="/home/material">素材管理</el-menu-item>
       </el-submenu>
       <el-submenu index="3">
         <template slot="title">
@@ -49,7 +50,7 @@ export default {}
 <style lang='less' scoped>
 .layout-con {
   background-color:#323745;
-  height: 100vh;
+  min-height: 100%;
   .layout-aside {
     padding: 15px 0;
     text-align: center;

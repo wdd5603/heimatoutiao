@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row type="flex" class="row-bg" justify="space-between" align="middle" style="height:50px;">
-      <el-col :span="6">
+      <el-col :span="8">
         <div class="grid-content bg-purple">
           <span class="el-icon-s-unfold" style="font-size:20px;vertical-align:middle"></span>
           江苏传智播客教育科技股份有限公司
@@ -15,7 +15,7 @@
           </el-input>
         </div>
         <!-- 用户头像 -->
-        <img :src='circleUrl' alt />
+        <img :src="circleUrl" alt />
         <!-- 右侧下拉菜单 -->
         <el-dropdown trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">
@@ -23,9 +23,9 @@
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="a">个人信息</el-dropdown-item>
-            <el-dropdown-item command="b">git地址</el-dropdown-item>
-            <el-dropdown-item command="c">退出</el-dropdown-item>
+            <el-dropdown-item command="person">个人信息</el-dropdown-item>
+            <el-dropdown-item command="address">git地址</el-dropdown-item>
+            <el-dropdown-item command="out">退出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
@@ -43,7 +43,20 @@ export default {
   },
   methods: {
     handleCommand (command) {
-      this.$message('click on item ' + command)
+      switch (command) {
+        case 'person':
+          break
+        case 'address':
+          window.location.href = 'https://github.com/wdd5603/heimatoutiao'
+          break
+        case 'out':
+          window.localStorage.clear()
+          this.$router.replace('/login')
+          break
+
+        default:
+          break
+      }
     }
   }
 }
@@ -54,12 +67,11 @@ export default {
   display: flex;
   align-items: center;
   img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: red;
-      margin: 0 10px;
-
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    margin: 0 10px;
   }
 }
 </style>
