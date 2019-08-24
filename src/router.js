@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Login from './views/login'
 import Home from './views/home/home'
 import Main from './components/home/main'
-import Comment from './views/comment/comment'
 
 Vue.use(Router)
 
@@ -22,7 +21,10 @@ export default new Router({
       component: Home,
       children: [
         { path: '', component: Main },
-        { path: 'commentlist', component: Comment }
+        { path: 'commentlist', component: () => import('./views/comment/comment') },
+        { path: 'contentlist', component: () => import('./views/article/article') },
+        { path: 'contlistedit/:itemid', component: () => import('./views/article/editArticle') },
+        { path: 'publish', component: () => import('./views/article/publish') }
       ]
     }
     // {

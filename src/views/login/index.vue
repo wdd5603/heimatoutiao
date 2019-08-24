@@ -1,6 +1,5 @@
 <template>
-  <transition>
-    <div class="login">
+    <div class="login" v-loading="loading">
       <el-card class="box-card">
         <div class="title">
           <img src="../../assets/images/logo_index.png" alt />
@@ -22,7 +21,6 @@
         </el-form>
       </el-card>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -40,6 +38,7 @@ export default {
         code: '',
         checked: false
       },
+      loading: false,
       rules: {
         mobile: [
           { required: true, message: '不可为空', trigger: 'blur' },
